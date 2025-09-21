@@ -3,157 +3,212 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>陣 Ver.STREET FIGHTER 6</title>
+  <title>闘志祭Ver.STREET FIGHTER 6</title>
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: 'Noto Sans JP', sans-serif; background:#111; color:#fff; line-height:1.6; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans JP', sans-serif; background: #111; color: #fff; line-height: 1.6; }
 
-    header { background:#000; padding:1rem; text-align:center; }
-    header h1 { font-size:1.5rem; }
+    header { background: #000; padding: 1rem; text-align: center; }
+    header h1 { font-size: 1.5rem; }
 
-    nav { display:flex; flex-wrap:wrap; justify-content:center; background:#222; padding:0.5rem; }
-    nav a { color:#fff; margin:0.5rem 1rem; text-decoration:none; transition:color 0.3s; }
-    nav a:hover { color:#f33; }
+    nav { display: flex; flex-wrap: wrap; justify-content: center; background: #222; padding: 0.5rem; }
+    nav a { color: #fff; margin: 0.5rem 1rem; text-decoration: none; transition: color 0.3s; }
+    nav a:hover { color: #f33; }
 
-    .hero { text-align:center; padding:2rem; }
-    .hero img { max-width:100%; border-radius:12px; }
+    .hero { text-align: center; padding: 2rem; }
+    .hero img { max-width: 100%; border-radius: 12px; }
 
-    section { padding:2rem 1rem; max-width:1000px; margin:auto; }
-    section h2 { font-size:1.8rem; margin-bottom:1rem; text-align:center; }
-    section p { margin-bottom:1rem; }
+    section { padding: 2rem 1rem; max-width: 1000px; margin: auto; }
+    section h2 { font-size: 1.8rem; margin-bottom: 1rem; text-align: center; }
+    section p { margin-bottom: 1rem; }
 
-    .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:1rem; }
-    .card { background:#222; padding:1rem; border-radius:12px; text-align:center; transition:transform 0.3s; }
-    .card:hover { transform:scale(1.05); }
-    .card img { max-width:100%; border-radius:8px; margin-bottom:0.5rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .card { background: #222; padding: 1rem; border-radius: 12px; text-align: center; transition: transform 0.3s; }
+    .card:hover { transform: scale(1.05); }
+    .card img { max-width: 100%; border-radius: 8px; margin-bottom: 0.5rem; }
 
-    .team-title { text-align:left; font-size:1.5rem; color:#f33; margin-top:2rem; margin-bottom:1rem; }
+    .team-title { text-align: left; font-size: 1.5rem; color: #f33; margin-top: 2rem; margin-bottom: 1rem; }
 
-    .rule-list { display:grid; gap:1rem; }
-    .card h3 { margin-bottom:0.5rem; font-size:1.3rem; color:#ff6666; }
-    .card ul { padding-left:1.2rem; }
-    .card ul li { margin-bottom:0.5rem; }
+    .rule-list { display: grid; gap: 1rem; }
+    .card h3 { margin-bottom: 0.5rem; font-size: 1.3rem; color: #ff6666; }
+    .card ul { padding-left: 1.2rem; }
+    .card ul li { margin-bottom: 0.5rem; }
 
-    footer { background:#000; text-align:center; padding:1rem; font-size:0.9rem; }
+    footer { background: #000; text-align: center; padding: 1rem; font-size: 0.9rem; }
 
-    /* モーダル */
-    .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); backdrop-filter:blur(3px); justify-content:center; align-items:center; z-index:1000; }
-    .modal-content { background:#222; color:#fff; padding:1.5rem 2rem; border-radius:12px; max-width:650px; max-height:80vh; overflow-y:auto; position:relative; box-shadow:0 0 20px rgba(0,0,0,0.5); }
-    #closeRule { font-size:1.2rem; width:28px; height:28px; text-align:center; line-height:28px; border-radius:50%; background:#ff4444; position:absolute; top:10px; right:10px; cursor:pointer; transition:background 0.2s; }
-    #closeRule:hover { background:#ff6666; }
-    .btn { background:linear-gradient(45deg,#ff5555,#ff2222); padding:0.6rem 1.2rem; border-radius:20px; box-shadow:0 4px 6px rgba(0,0,0,0.3); border:none; cursor:pointer; transition:transform 0.2s; font-weight:bold; }
-    .btn:hover { transform:scale(1.05); }
+    /* モーダル用スタイル */
+    .modal {
+      display: none;
+      position: fixed;
+      top:0; left:0; width:100%; height:100%;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(3px);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: #222;
+      color: #fff;
+      padding: 1.5rem 2rem;
+      border-radius: 12px;
+      max-width: 650px;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+    #closeRule {
+      font-size: 1.2rem;
+      width: 28px;
+      height: 28px;
+      text-align: center;
+      line-height: 28px;
+      border-radius: 50%;
+      background: #ff4444;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    #closeRule:hover { background: #ff6666; }
+    .btn {
+      background: linear-gradient(45deg, #ff5555, #ff2222);
+      padding: 0.6rem 1.2rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s;
+      font-weight: bold;
+    }
+    .btn:hover { transform: scale(1.05); }
 
+    /* モバイル対応 */
     @media(max-width:600px){
-      nav { flex-direction:column; }
-      .modal-content { width:95%; max-height:95vh; padding:1rem; }
+      nav { flex-direction: column; }
+      .modal-content { width: 95%; max-height: 95vh; padding: 1rem; }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>陣　Ver.STREET FIGHTER 6</h1>
-</header>
+  <header>
+    <h1>闘志祭 Ver.STREET FIGHTER 6</h1>
+  </header>
 
-<nav>
-  <a href="#about">大会概要</a>
-  <a href="#members">出場者</a>
-  <a href="#schedule">スケジュール</a>
-  <a href="#rule">大会ルール</a>
-  <a href="https://x.com/team_GGSamurai" target="_blank">お問い合わせ</a>
-</nav>
+  <nav>
+    <a href="#about">大会概要</a>
+    <a href="#members">出場者</a>
+    <a href="#schedule">スケジュール</a>
+    <a href="#rule">大会ルール</a>
+    
+<a href="https://x.com/team_GGSamurai" target="_blank">お問い合わせ</a>
 
-<section class="hero">
-  <img src="https://placehold.jp/1280x720.png" alt="メインビジュアル">
-</section>
+  </nav>
 
-<section id="about">
-  <h2>大会概要</h2>
-  <p>「陣 Ver.STREET FIGHTER 6」は、真剣とエンタメが融合した究極の大会です。</p>
-</section>
+  <section class="hero">
+    <img src="https://placehold.jp/1280x720.png" alt="メインビジュアル">
+  </section>
 
-<section id="members">
-  <h2>出場者一覧</h2>
+  <section id="about">
+    <h2>大会概要</h2>
+    <p>「闘志祭は Ver.STREET FIGHTER 6」は、真剣とエンタメが融合した究極の大会です。</p>
+  </section>
 
-  <div class="team-title">チームA</div>
-  <div class="grid">
-    <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーA1"><h3>プレイヤーA1</h3></div>
-    <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーA2"><h3>プレイヤーA2</h3></div>
-    <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーA3"><h3>プレイヤーA3</h3></div>
-    <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーA4"><h3>プレイヤーA4</h3></div>
-  </div>
+  <section id="members">
+    <h2>出場者一覧</h2>
 
-  <div class="team-title">チームB</div>
-  <div class="grid">
-    <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーB1"><h3>プレイヤーB1</h3></div>
-    <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーB2"><h3>プレイヤーB2</h3></div>
-    <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーB3"><h3>プレイヤーB3</h3></div>
-    <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーB4"><h3>プレイヤーB4</h3></div>
-  </div>
-
-  <div class="team-title">チームC</div>
-  <div class="grid">
-    <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーC1"><h3>プレイヤーC1</h3></div>
-    <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーC2"><h3>プレイヤーC2</h3></div>
-    <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーC3"><h3>プレイヤーC3</h3></div>
-    <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーC4"><h3>プレイヤーC4</h3></div>
-  </div>
-
-  <div class="team-title">チームD</div>
-  <div class="grid">
-    <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーD1"><h3>プレイヤーD1</h3></div>
-    <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーD2"><h3>プレイヤーD2</h3></div>
-    <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーD3"><h3>プレイヤーD3</h3></div>
-    <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーD4"><h3>プレイヤーD4</h3></div>
-  </div>
-</section>
-
-<section id="schedule">
-  <h2>スケジュール</h2>
-  <p>2025年12月30日 18:00〜 開催予定</p>
-  <p>配信プラットフォーム：YouTube / Twitch</p>
-</section>
-
-<section id="rule">
-  <h2>大会ルール</h2>
-  <p>大会ルールの詳細は <button id="openRule" class="btn">ここをクリック</button> で確認できます。</p>
-</section>
-
-<div id="ruleModal" class="modal">
-  <div class="modal-content">
-    <span id="closeRule">&times;</span>
-    <h2>大会ルール詳細</h2>
-    <div class="rule-list">
-      <div class="card">
-        <h3>試合形式(総当たり戦)</h3>
-        <ul>
-          <li>通常試合: 使用ファイターは事前に申請した1キャラのみ</li>
-          <li>大将のみ申告以外のキャラ使用OK</li>
-          <li>特別試合: 使用ファイターはザンギフ固定</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>使用タイトル</h3>
-        <p>『ストリートファイター6』最新バージョンを使用します。</p>
-      </div>
+    <div class="team-title">チームA</div>
+    <div class="grid">
+      <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーA1"><h3>プレイヤーA1</h3></div>
+      <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーA2"><h3>プレイヤーA2</h3></div>
+      <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーA3"><h3>プレイヤーA3</h3></div>
+      <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーA4"><h3>プレイヤーA4</h3></div>
     </div>
-  </div>
-</div>
 
-<footer>
-  <p>© 2025 陣 Ver.STREET FIGHTER 6</p>
-</footer>
+    <div class="team-title">チームB</div>
+    <div class="grid">
+      <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーB1"><h3>プレイヤーB1</h3></div>
+      <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーB2"><h3>プレイヤーB2</h3></div>
+      <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーB3"><h3>プレイヤーB3</h3></div>
+      <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーB4"><h3>プレイヤーB4</h3></div>
+    </div>
 
-<script>
-  const modal = document.getElementById('ruleModal');
-  const openBtn = document.getElementById('openRule');
-  const closeBtn = document.getElementById('closeRule');
+    <div class="team-title">チームC</div>
+    <div class="grid">
+      <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーC1"><h3>プレイヤーC1</h3></div>
+      <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーC2"><h3>プレイヤーC2</h3></div>
+      <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーC3"><h3>プレイヤーC3</h3></div>
+      <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーC4"><h3>プレイヤーC4</h3></div>
+    </div>
 
-  openBtn.onclick = () => { modal.style.display = 'flex'; }
-  closeBtn.onclick = () => { modal.style.display = 'none'; }
-  window.onclick = e => { if(e.target==modal) modal.style.display='none'; }
-</script>
+    <div class="team-title">チームD</div>
+    <div class="grid">
+      <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーD1"><h3>プレイヤーD1</h3></div>
+      <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーD2"><h3>プレイヤーD2</h3></div>
+      <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーD3"><h3>プレイヤーD3</h3></div>
+      <div class="card"><img src="https://placehold.jp/400x400.png" alt="プレイヤーD4"><h3>プレイヤーD4</h3></div>
+    </div>
+
+  </section>
+
+  <section id="schedule">
+    <h2>スケジュール</h2>
+    <p>2025年12月27日 18:00〜 開催予定</p>
+    <p>配信プラットフォーム：YouTube / Twitch</p>
+  </section>
+
+  <section id="rule">
+    <h2>大会ルール</h2>
+    <p>大会ルールは <button id="openRule" class="btn">ここをクリック</button> で確認できます。</p>
+  </section>
+
+  <!-- モーダル本体 -->
+  <div id="ruleModal" class="modal">
+    <div class="modal-content">
+      <span id="closeRule">&times;</span>
+      <h2>大会ルール</h2>
+
+      <div class="rule-list">
+        <div class="card">
+          <h3>試合形式(4チーム総当たり戦)</h3>
+          <ul>
+            <br>■通常試合</br>
+             <br>・使用ファイターは事前に申請した１キャラのみ </br>
+           <br>・大将のみ申告以外のキャラ使用OK</br>
+          
+
+           
+<br>■特別試合</br>
+             <br>・使用ファイターはザンギフ固定</br> 
+         
+
+
+</ul>
+        </div>
+        <div class="card">
+          <h3>使用タイトル</h3>
+          <p>『ストリートファイター6』最新バージョンを使用します。</p>
+        </div>
+
+
+
+  <footer>
+    <p>© 2025 闘志祭Ver.STREET FIGHTER 6</p>
+  </footer>
+
+  <script>
+    const modal = document.getElementById('ruleModal');
+    const openBtn = document.getElementById('openRule');
+    const closeBtn = document.getElementById('closeRule');
+
+    openBtn.onclick = () => { modal.style.display = 'flex'; }
+    closeBtn.onclick = () => { modal.style.display = 'none'; }
+    window.onclick = e => { if(e.target == modal) modal.style.display = 'none'; }
+  </script>
 
 </body>
 </html>
+
